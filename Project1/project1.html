@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet"  />
+    <title>Coding 101 - Project 1, Part 1: Wheel of Fortune</title>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      pre {
+        background-color:#eee;
+        overflow:auto;
+        margin:0 0 1em;
+        padding:.5em 1em;
+      }
+
+      pre code,
+      pre .line-number {
+        /* Ukuran line-height antara teks di dalam tag <code> dan <span class="line-number"> harus sama! */
+        font:normal normal 16px/18px "Courier New",Courier,Monospace;
+        color:black;
+        display:block;
+      }
+
+      pre .line-number {
+        float:left;
+        margin:0 1em 0 -1em;
+        border-right:1px solid;
+        text-align:right;
+      }
+
+      pre .line-number span {
+        display:block;
+        padding:0 .5em 0 1em;
+      }
+
+      pre .cl {
+        display:block;
+        clear:both;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container py-4">
+        <header class="pb-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Project 1, Part 1: Wheel of Fortune</span>
+          </a>
+        </header>
+        
+        <h4>Overview</h4>
+
+        <p>
+          You will be creating a game similar to wheel of fortune, that will allow the player to guess a word, letter by letter.
+          The difference is that there will be no spinning the wheel, so you can think of this game as hangman without the possibility of dying.
+          We will have a part 2 to this project that will allow you to set difficulty levels and have a limited number of guesses; but, for now, 
+          we are just going to let the player guess until they get it right.
+        </p>
+
+        <h4>Instructions</h6>
+
+        <p>
+          You will be given a zip file containing two files: <code>WheelOfFortune.java</code> and <code>GameRunner.java</code>.
+          I have written the basic game loop for you in <code>GameRunner.java</code> but it will be good for you to look over it
+          and make sure you understand what is happening (it is very short). Your task is to implement
+          the <code>TakeTurn()</code> method in the <code>WheelOfFortune</code> class, which will handle all of the logic relating
+          to the game.
+        </p>
+
+        <div class="row">
+          <div class="col">
+            <h6>WheelOfFortune.java</h6>
+
+            <pre>
+<code>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class WheelOfFortune {
+
+  private String[] answer;
+  private String[] answerBlanks;
+  private ArrayList<String> guessedList;
+  private boolean GAME_RUNNING;
+  
+  public WheelOfFortune(String[] answerList) {
+    this.answer = answerList;
+    this.answerBlanks = new String[answerList.length];
+    Arrays.fill(this.answerBlanks, "_");
+    this.guessedList = new ArrayList<String>();
+    this.GAME_RUNNING = false;
+  }
+  
+  private void takeTurn() {
+    
+    
+    
+    
+    // TODO: You must implement this method
+    
+    
+    
+    
+  }
+  
+  private String getGuess() {
+    Scanner s = null;
+    String guess = null;
+    try {
+      s = new Scanner(System.in);
+      System.out.print("Guess a letter: ");
+      guess = s.nextLine();
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      if (s != null) {
+        s.close();
+      }
+    }
+    return guess.toLowerCase();
+  }
+  
+  public void startGame() {
+    System.out.println("Starting game...");
+    this.GAME_RUNNING = true;
+    this.gameLoop();
+  }
+  
+  public void endGame() {
+    System.out.println("Ending game...");
+    this.GAME_RUNNING = false;
+  }
+  
+  private void gameLoop() {
+    while (this.GAME_RUNNING) {
+      this.takeTurn();
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="col">
+            <h6>GameRunner.java</h6>
+
+            <pre>
+<code>
+public class GameRunner {
+
+  public static void main(String[] args) {
+    String[] answer = new String[] {"c","o","d","i","n","g"};
+    WheelOfFortune game = new WheelOfFortune(answer);
+    game.startGame();
+  }
+}
+</code></pre>
+          </div>
+        </div>
+        
+
+        <p>Here are a few (<span style="color: red">not all</span>) of the things you will need to do in your <code>takeTurn()</code> method:</p>
+
+        <ul>
+          <li>Prompt the user for input. This can be done by calling the <code>getGuess()</code> method that I provided.</li>
+          <li>Check to see if the letter that the player guessed appears in the <code>answer</code> array. If it does, then update <code>answerBlanks</code>
+            array by replacing each occurence of "_", where the letter appears, with the letter that was guessed. If it doesn't, then add it to the list of incorrect guesses (<code>guessedList</code>).
+          </li>
+          <li>Check to see if the word has been guessed. If it has, then end the game and tell the user that they won.</li>
+          <li>After each guess, if it wasn't the winning guess, you should print the state of the game (which letters have been guessed and which ones the user has gotten correct)</li>
+        </ul>
+
+        <h5>Source Code</h5>
+
+        <ul>
+          <li><a href="./WheelOfFortune.java"><code>WheelOfFortune.java</code></a></li>
+          <li><a href="./GameRunner.java"><code>GameRunner.java</code></a></li>
+        </ul>
+
+        <h5>Example Gameplay</h5>
+        <br/>
+        <img src="./exampleOutput.png" alt="sample output" width="30%">
+
+        <footer class="pt-3 mt-4 text-muted border-top">
+          &copy; 2022
+        </footer>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script>
+          (function() {
+            var pre = document.getElementsByTagName('pre'),
+                pl = pre.length;
+            for (var i = 0; i < pl; i++) {
+                pre[i].innerHTML = '<span class="line-number"></span>' + pre[i].innerHTML + '<span class="cl"></span>';
+                var num = pre[i].innerHTML.split(/\n/).length;
+                for (var j = 0; j < num; j++) {
+                    var line_num = pre[i].getElementsByTagName('span')[0];
+                    line_num.innerHTML += '<span>' + (j + 1) + '</span>';
+                }
+            }
+          })();
+        </script>
+      </div>
+    </main>
+  </body>
+</html>
